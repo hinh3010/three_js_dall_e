@@ -11,6 +11,7 @@ const config = new Configuration({
   // apiKey: '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',
   apiKey: process.env.OPENAI_API_KEY
 });
+
 const openai = new OpenAIApi(config);
 
 router.route('/').get((req, res) => {
@@ -28,8 +29,6 @@ router.route('/').post(async (req, res) => {
       response_format: 'b64_json',
     });
 
-    console.log({ response })
-
     const image = response.data.data[0].b64_json;
 
     res.status(200).json({ photo: image });
@@ -38,7 +37,7 @@ router.route('/').post(async (req, res) => {
       console.log(error.response.status);
       console.log(error.response.data);
     } else {
-      console.log(error.message);
+      console.log('error::', error.message);
     }
     res.status(500).json({ message: error.message })
   }

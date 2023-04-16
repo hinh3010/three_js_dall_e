@@ -7,6 +7,7 @@ import { DecalTypes, EditorTabs, FilterTabs } from '../config/constants';
 import { reader } from '../config/helpers';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import state from '../store';
+import config from '../config/config';
 
 const Customizer = () => {
   const snap = useSnapshot(state);
@@ -51,7 +52,7 @@ const Customizer = () => {
     try {
       setGeneratingImg(true);
 
-      const response = await fetch('https://three-js-dall-e.onrender.com/api/v1/dalle', {
+      const response = await fetch(config.development.backendUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
