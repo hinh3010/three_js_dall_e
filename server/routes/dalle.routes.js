@@ -9,9 +9,8 @@ const router = express.Router();
 const config = new Configuration({
   // organization: "org-OAxNIDcLGUm1VnDIPDQoj372",
   // apiKey: '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',
-  apiKey: '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'
+  apiKey: process.env.OPENAI_API_KEY
 });
-
 const openai = new OpenAIApi(config);
 
 router.route('/').get((req, res) => {
